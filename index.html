@@ -1,70 +1,797 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import insightface
-from insightface.app import FaceAnalysis
-import cv2
-import numpy as np
-import base64
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FaceShift — Bulk Face Swap</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface2: #1c1c28;
+        --border: #2a2a3a;
+        --accent: #ff3cac;
+        --accent2: #7b2dff;
+        --text: #e8e8f0;
+        --muted: #6b6b80;
+        --success: #22d3a0;
+        --error: #ff4f4f;
+        --gold: #ffda6a;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        min-height: 100vh;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 40% at 20% 10%,
+            rgba(123, 45, 255, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 40% at 80% 90%,
+            rgba(255, 60, 172, 0.1) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .logo {
+        font-family: "Bebas Neue", cursive;
+        font-size: clamp(52px, 8vw, 88px);
+        letter-spacing: 0.04em;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          var(--accent) 50%,
+          var(--accent2) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .tagline {
+        color: var(--muted);
+        font-size: 15px;
+        margin-top: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      .status-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px 18px;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--error);
+        flex-shrink: 0;
+      }
+      .status-dot.online {
+        background: var(--success);
+        animation: pulse 2s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .step-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .step-card.active::before {
+        opacity: 1;
+      }
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+      .step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", cursive;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .step-sub {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .drop-zone {
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+        padding: 32px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        background: var(--bg);
+        position: relative;
+      }
+      .drop-zone:hover,
+      .drop-zone.drag {
+        border-color: var(--accent2);
+        background: rgba(123, 45, 255, 0.04);
+      }
+      .drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .drop-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+      .drop-label {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .drop-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .thumb-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 8px;
+        margin-top: 16px;
+        max-height: 280px;
+        overflow-y: auto;
+      }
+      .thumb {
+        aspect-ratio: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        border: 2px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .thumb.processing {
+        border-color: var(--gold);
+      }
+      .thumb.done {
+        border-color: var(--success);
+      }
+      .thumb.error {
+        border-color: var(--error);
+      }
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .thumb .badge {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+      .thumb.done .badge {
+        background: var(--success);
+      }
+      .thumb.processing .badge {
+        background: var(--gold);
+      }
+      .thumb.error .badge {
+        background: var(--error);
+      }
+      .face-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .face-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--accent);
+        flex-shrink: 0;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 36px;
+      }
+      .face-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .face-drop {
+        flex: 1;
+        min-width: 200px;
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        background: var(--bg);
+        position: relative;
+      }
+      .face-drop:hover {
+        border-color: var(--accent);
+        background: rgba(255, 60, 172, 0.04);
+      }
+      .face-drop input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .start-btn {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        border: none;
+        border-radius: var(--radius);
+        color: #fff;
+        font-family: "Bebas Neue", cursive;
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .start-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(255, 60, 172, 0.35);
+      }
+      .start-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .progress-wrap {
+        margin-top: 20px;
+        display: none;
+      }
+      .progress-wrap.show {
+        display: block;
+      }
+      .progress-bar {
+        background: var(--bg);
+        border-radius: 999px;
+        height: 6px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        border-radius: 999px;
+        transition: width 0.4s;
+        width: 0%;
+      }
+      .progress-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .results-section {
+        margin-top: 40px;
+        display: none;
+      }
+      .results-section.show {
+        display: block;
+      }
+      .results-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .results-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: 28px;
+        letter-spacing: 0.05em;
+      }
+      .dl-all-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .dl-all-btn:hover {
+        background: var(--accent2);
+        border-color: var(--accent2);
+      }
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .result-card {
+        background: var(--surface2);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        animation: fadeUp 0.4s ease both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .result-card img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        display: block;
+      }
+      .result-footer {
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .result-name {
+        font-size: 11px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+      }
+      .dl-btn {
+        background: none;
+        border: none;
+        color: var(--accent);
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-size: 14px;
+        z-index: 999;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .toast.error {
+        border-color: var(--error);
+      }
+      .toast.success {
+        border-color: var(--success);
+      }
+      .count-badge {
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="logo">FaceShift</div>
+        <div class="tagline">Bulk AI Face Swap · 100% Local · Free</div>
+      </header>
 
-app = Flask(__name__)
-CORS(app, origins="*")
+      <div class="status-bar">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Connecting to local server...</span>
+      </div>
 
-print("Loading face swap model... please wait...")
-face_app = FaceAnalysis(name='buffalo_l')
-face_app.prepare(ctx_id=0, det_size=(640, 640))
-swapper = insightface.model_zoo.get_model(
-    '/app/inswapper_128.onnx',
-    download=False,
-    download_zip=False
-)
-print("Model loaded! Ready to swap faces.")
+      <div class="steps">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">
+                Upload Target Images
+                <span id="imgCount" class="count-badge" style="display: none"
+                  >0</span
+                >
+              </div>
+              <div class="step-sub">
+                Upload up to 30 images where the face will be replaced
+              </div>
+            </div>
+          </div>
+          <div class="drop-zone" id="targetDrop">
+            <input type="file" id="targetInput" accept="image/*" multiple />
+            <div class="drop-icon">🖼️</div>
+            <div class="drop-label">Drag & drop images here</div>
+            <div class="drop-sub">JPG, PNG, WEBP · Max 30 images</div>
+          </div>
+          <div class="thumb-grid" id="targetGrid"></div>
+        </div>
 
-def decode_image(base64_str):
-    if ',' in base64_str:
-        base64_str = base64_str.split(',')[1]
-    img_bytes = base64.b64decode(base64_str)
-    img_array = np.frombuffer(img_bytes, dtype=np.uint8)
-    return cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Upload Face Photo</div>
+              <div class="step-sub">
+                This face will be swapped into all target images
+              </div>
+            </div>
+          </div>
+          <div class="face-wrap">
+            <div class="face-circle" id="faceCircle">👤</div>
+            <div class="face-drop">
+              <input type="file" id="faceInput" accept="image/*" />
+              <div class="drop-icon">📸</div>
+              <div class="drop-label">Drag & drop your face photo</div>
+              <div class="drop-sub">Clear front-facing photo works best</div>
+            </div>
+          </div>
+        </div>
 
-def encode_image(img):
-    _, buffer = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 95])
-    return 'data:image/jpeg;base64,' + base64.b64encode(buffer).decode('utf-8')
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Start Face Swap</div>
+              <div class="step-sub">
+                Processes all images one by one automatically
+              </div>
+            </div>
+          </div>
+          <button
+            class="start-btn"
+            id="startBtn"
+            onclick="startSwap()"
+            disabled
+          >
+            ⚡ START FACE SWAP
+          </button>
+          <div class="progress-wrap" id="progressWrap">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">Starting...</div>
+          </div>
+        </div>
+      </div>
 
-@app.route('/swap', methods=['POST', 'OPTIONS'])
-def swap():
-    if request.method == 'OPTIONS':
-        return '', 200
-    try:
-        data = request.json
-        target_img = decode_image(data['target'])
-        face_img = decode_image(data['face'])
+      <!-- Results -->
+      <div class="results-section" id="resultsSection">
+        <div class="results-header">
+          <div class="results-title">✅ Results</div>
+          <button class="dl-all-btn" onclick="downloadAll()">
+            ⬇ Download All
+          </button>
+        </div>
+        <div class="results-grid" id="resultsGrid"></div>
+      </div>
+    </div>
 
-        face_faces = face_app.get(face_img)
-        if len(face_faces) == 0:
-            return jsonify({'error': 'No face detected in face photo'}), 400
-        source_face = face_faces[0]
+    <div class="toast" id="toast"></div>
 
-        target_faces = face_app.get(target_img)
-        if len(target_faces) == 0:
-            return jsonify({'error': 'No face detected in target image'}), 400
+    <script>
+      let targetFiles = [];
+      let faceDataURL = null;
+      let results = [];
+      let isProcessing = false;
 
-        result = target_img.copy()
-        for target_face in target_faces:
-            result = swapper.get(
-                result,
-                target_face,
-                source_face,
-                paste_back=True
-            )
+      // Check server status
+      async function checkServer() {
+        try {
+          const res = await fetch(
+            "https://yash4940-faceshift-backend.hf.space/health",
+          );
+          const data = await res.json();
+          if (data.status === "ok") {
+            document.getElementById("statusDot").classList.add("online");
+            document.getElementById("statusText").textContent =
+              "Local server is running — ready to swap!";
+            updateStartBtn();
+          }
+        } catch {
+          document.getElementById("statusText").textContent =
+            "Server not running — start app.py first";
+          setTimeout(checkServer, 3000);
+        }
+      }
+      checkServer();
 
-        return jsonify({'result': encode_image(result)})
+      // Target images
+      document.getElementById("targetInput").addEventListener("change", (e) => {
+        handleTargetFiles(Array.from(e.target.files));
+      });
 
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+      const targetDrop = document.getElementById("targetDrop");
+      targetDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        targetDrop.classList.add("drag");
+      });
+      targetDrop.addEventListener("dragleave", () =>
+        targetDrop.classList.remove("drag"),
+      );
+      targetDrop.addEventListener("drop", (e) => {
+        e.preventDefault();
+        targetDrop.classList.remove("drag");
+        handleTargetFiles(
+          Array.from(e.dataTransfer.files).filter((f) =>
+            f.type.startsWith("image/"),
+          ),
+        );
+      });
 
-@app.route('/health', methods=['GET', 'OPTIONS'])
-def health():
-    return jsonify({'status': 'ok'})
+      function handleTargetFiles(files) {
+        targetFiles = [...targetFiles, ...files].slice(0, 30);
+        renderGrid();
+        updateStartBtn();
+      }
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7860, debug=False)
+      function renderGrid() {
+        const grid = document.getElementById("targetGrid");
+        grid.innerHTML = "";
+        const badge = document.getElementById("imgCount");
+        badge.style.display = targetFiles.length ? "inline-block" : "none";
+        badge.textContent = targetFiles.length;
+        targetFiles.forEach((f, i) => {
+          const div = document.createElement("div");
+          div.className = "thumb";
+          div.id = `thumb-${i}`;
+          const img = document.createElement("img");
+          img.src = URL.createObjectURL(f);
+          const badge = document.createElement("div");
+          badge.className = "badge";
+          div.appendChild(img);
+          div.appendChild(badge);
+          grid.appendChild(div);
+        });
+      }
+
+      // Face photo
+      document.getElementById("faceInput").addEventListener("change", (e) => {
+        if (e.target.files[0]) handleFaceFile(e.target.files[0]);
+      });
+
+      function handleFaceFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          faceDataURL = e.target.result;
+          document.getElementById("faceCircle").innerHTML =
+            `<img src="${faceDataURL}" />`;
+          updateStartBtn();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function updateStartBtn() {
+        const serverOnline = document
+          .getElementById("statusDot")
+          .classList.contains("online");
+        document.getElementById("startBtn").disabled =
+          !(targetFiles.length > 0 && faceDataURL && serverOnline) ||
+          isProcessing;
+      }
+
+      // Swap
+      async function startSwap() {
+        if (isProcessing) return;
+        isProcessing = true;
+        results = [];
+        document.getElementById("startBtn").disabled = true;
+        document.getElementById("startBtn").textContent = "⏳ PROCESSING...";
+        document.getElementById("progressWrap").classList.add("show");
+        document.getElementById("resultsSection").classList.remove("show");
+        document.getElementById("resultsGrid").innerHTML = "";
+
+        const total = targetFiles.length;
+        let done = 0;
+
+        for (let i = 0; i < targetFiles.length; i++) {
+          const thumb = document.getElementById(`thumb-${i}`);
+          if (thumb) {
+            thumb.className = "thumb processing";
+            thumb.querySelector(".badge").textContent = "⏳";
+          }
+          updateProgress(i, total, `Swapping image ${i + 1} of ${total}...`);
+
+          try {
+            const targetDataURL = await fileToDataURL(targetFiles[i]);
+            const res = await fetch(
+              "https://yash4940-faceshift-backend.hf.space/swap",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  target: targetDataURL,
+                  face: faceDataURL,
+                }),
+              },
+            );
+            const data = await res.json();
+            if (data.error) throw new Error(data.error);
+
+            results.push({ name: targetFiles[i].name, url: data.result });
+            if (thumb) {
+              thumb.className = "thumb done";
+              thumb.querySelector(".badge").textContent = "✓";
+              thumb.querySelector("img").src = data.result;
+            }
+            addResultCard({ name: targetFiles[i].name, url: data.result });
+            document.getElementById("resultsSection").classList.add("show");
+            done++;
+          } catch (err) {
+            if (thumb) {
+              thumb.className = "thumb error";
+              thumb.querySelector(".badge").textContent = "✗";
+            }
+            showToast(`Image ${i + 1} failed: ${err.message}`, "error");
+          }
+        }
+
+        updateProgress(
+          total,
+          total,
+          `Done! ${done} of ${total} swapped successfully`,
+        );
+        isProcessing = false;
+        document.getElementById("startBtn").disabled = false;
+        document.getElementById("startBtn").textContent =
+          "✅ DONE — SWAP AGAIN";
+        showToast(`${done} of ${total} images swapped!`, "success");
+      }
+
+      function updateProgress(done, total, label) {
+        document.getElementById("progressFill").style.width =
+          `${(done / total) * 100}%`;
+        document.getElementById("progressLabel").textContent = label;
+      }
+
+      function fileToDataURL(file) {
+        return new Promise((res, rej) => {
+          const r = new FileReader();
+          r.onload = (e) => res(e.target.result);
+          r.onerror = () => rej(new Error("Read failed"));
+          r.readAsDataURL(file);
+        });
+      }
+
+      function addResultCard({ name, url }) {
+        const grid = document.getElementById("resultsGrid");
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+      <img src="${url}" />
+      <div class="result-footer">
+        <span class="result-name">${name}</span>
+        <button class="dl-btn" onclick="downloadImage('${url}','${name}')">⬇</button>
+      </div>`;
+        grid.appendChild(card);
+      }
+
+      async function downloadImage(url, name) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `faceshift_${name}`;
+        a.click();
+      }
+
+      async function downloadAll() {
+        for (const r of results) {
+          await downloadImage(r.url, r.name);
+          await new Promise((res) => setTimeout(res, 300));
+        }
+      }
+
+      let toastTimer;
+      function showToast(msg, type = "") {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.className = `toast show ${type}`;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 4000);
+      }
+    </script>
+  </body>
+</html>
