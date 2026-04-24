@@ -7,13 +7,13 @@ import numpy as np
 import base64
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*")
 
 print("Loading face swap model... please wait...")
 face_app = FaceAnalysis(name='buffalo_l')
 face_app.prepare(ctx_id=0, det_size=(640, 640))
 swapper = insightface.model_zoo.get_model(
-    'inswapper_128.onnx',
+    '/app/inswapper_128.onnx',
     download=False,
     download_zip=False
 )
@@ -30,8 +30,10 @@ def encode_image(img):
     _, buffer = cv2.imencode('.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 95])
     return 'data:image/jpeg;base64,' + base64.b64encode(buffer).decode('utf-8')
 
-@app.route('/swap', methods=['POST'])
+@app.route('/swap', methods=['POST', 'OPTIONS'])
 def swap():
+    if request.method == 'OPTIONS':
+        return '', 200
     try:
         data = request.json
         target_img = decode_image(data['target'])
@@ -60,9 +62,9 @@ def swap():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/health', methods=['GET'])
+@app.route('/health', methods=['GET', 'OPTIONS'])
 def health():
     return jsonify({'status': 'ok'})
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=False)
+    app.run(host='0.0.0.0', port=7860, debug=False)
