@@ -1,777 +1,1220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7GX4Y815MN"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<!-- ===================== SEO TAGS ===================== -->
-<title>FaceShift — Free Bulk AI Face Swap Online | Swap 30 Faces Instantly</title>
-<meta name="description" content="FaceShift is a free AI face swap tool. Upload up to 30 images and swap faces instantly with one click. No signup, no watermark, 100% private — images are deleted when you leave." />
-<meta name="keywords" content="free face swap online, bulk face swap, AI face swap, swap faces in photos, face swap multiple images, face swap no watermark, free deepfake tool, online face changer, AI photo editor" />
-<meta name="author" content="FaceShift" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://faceshift-nu.vercel.app/" />
+      gtag("config", "G-7GX4Y815MN");
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ===================== OPEN GRAPH (Social Sharing) ===================== -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://faceshift-nu.vercel.app/" />
-<meta property="og:title" content="FaceShift — Free Bulk AI Face Swap Online" />
-<meta property="og:description" content="Swap faces in up to 30 photos instantly. Free, no signup required, no watermark. Your images are never stored." />
-<meta property="og:image" content="https://faceshift-nu.vercel.app/og-image.jpg" />
-<meta property="og:site_name" content="FaceShift" />
+    <!-- ===================== SEO TAGS ===================== -->
+    <title>
+      FaceShift — Free Bulk AI Face Swap Online | Swap 30 Faces Instantly
+    </title>
+    <meta
+      name="description"
+      content="FaceShift is a free AI face swap tool. Upload up to 30 images and swap faces instantly with one click. No signup, no watermark, 100% private — images are deleted when you leave."
+    />
+    <meta
+      name="keywords"
+      content="free face swap online, bulk face swap, AI face swap, swap faces in photos, face swap multiple images, face swap no watermark, free deepfake tool, online face changer, AI photo editor"
+    />
+    <meta name="author" content="FaceShift" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://faceshift-nu.vercel.app/" />
 
-<!-- ===================== TWITTER CARD ===================== -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="FaceShift — Free Bulk AI Face Swap Online" />
-<meta name="twitter:description" content="Swap faces in up to 30 photos instantly. Free, no signup, no watermark." />
-<meta name="twitter:image" content="https://faceshift-nu.vercel.app/og-image.jpg" />
+    <!-- ===================== OPEN GRAPH (Social Sharing) ===================== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://faceshift-nu.vercel.app/" />
+    <meta
+      property="og:title"
+      content="FaceShift — Free Bulk AI Face Swap Online"
+    />
+    <meta
+      property="og:description"
+      content="Swap faces in up to 30 photos instantly. Free, no signup required, no watermark. Your images are never stored."
+    />
+    <meta
+      property="og:image"
+      content="https://faceshift-nu.vercel.app/og-image.jpg"
+    />
+    <meta property="og:site_name" content="FaceShift" />
 
-<!-- ===================== SCHEMA MARKUP ===================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "FaceShift",
-  "url": "https://faceshift-nu.vercel.app/",
-  "description": "Free AI-powered bulk face swap tool. Swap faces in up to 30 images instantly with no signup required.",
-  "applicationCategory": "PhotoEditorApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": [
-    "Bulk face swap up to 30 images",
-    "No signup required",
-    "No watermark",
-    "100% private - images not stored",
-    "AI powered realistic results"
-  ]
-}
-</script>
+    <!-- ===================== TWITTER CARD ===================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="FaceShift — Free Bulk AI Face Swap Online"
+    />
+    <meta
+      name="twitter:description"
+      content="Swap faces in up to 30 photos instantly. Free, no signup, no watermark."
+    />
+    <meta
+      name="twitter:image"
+      content="https://faceshift-nu.vercel.app/og-image.jpg"
+    />
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- ===================== SCHEMA MARKUP ===================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "FaceShift",
+        "url": "https://faceshift-nu.vercel.app/",
+        "description": "Free AI-powered bulk face swap tool. Swap faces in up to 30 images instantly with no signup required.",
+        "applicationCategory": "PhotoEditorApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Bulk face swap up to 30 images",
+          "No signup required",
+          "No watermark",
+          "100% private - images not stored",
+          "AI powered realistic results"
+        ]
+      }
+    </script>
 
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface2: #1c1c28;
-    --border: #2a2a3a;
-    --accent: #ff3cac;
-    --accent2: #7b2dff;
-    --text: #e8e8f0;
-    --muted: #6b6b80;
-    --success: #22d3a0;
-    --error: #ff4f4f;
-    --gold: #ffda6a;
-    --radius: 12px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(123,45,255,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 80% 90%, rgba(255,60,172,0.10) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .wrapper {
-    position: relative;
-    z-index: 1;
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 24px 40px;
-    flex: 1;
-  }
-  header { text-align: center; margin-bottom: 20px; }
-  .logo {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(52px, 8vw, 88px);
-    letter-spacing: 0.04em;
-    background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-  }
-  .tagline {
-    color: var(--muted);
-    font-size: 15px;
-    margin-top: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-  /* Privacy banner */
-  .privacy-banner {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(34,211,160,0.06);
-    border: 1px solid rgba(34,211,160,0.2);
-    border-radius: var(--radius);
-    padding: 12px 18px;
-    margin: 20px 0 16px;
-    font-size: 13px;
-    color: #a0f0d8;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .privacy-banner span { font-size: 16px; }
+    <style>
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface2: #1c1c28;
+        --border: #2a2a3a;
+        --accent: #ff3cac;
+        --accent2: #7b2dff;
+        --text: #e8e8f0;
+        --muted: #6b6b80;
+        --success: #22d3a0;
+        --error: #ff4f4f;
+        --gold: #ffda6a;
+        --radius: 12px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 40% at 20% 10%,
+            rgba(123, 45, 255, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 40% at 80% 90%,
+            rgba(255, 60, 172, 0.1) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 24px 40px;
+        flex: 1;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .logo {
+        font-family: "Bebas Neue", cursive;
+        font-size: clamp(52px, 8vw, 88px);
+        letter-spacing: 0.04em;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          var(--accent) 50%,
+          var(--accent2) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .tagline {
+        color: var(--muted);
+        font-size: 15px;
+        margin-top: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
 
-  /* Status bar */
-  .status-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px 18px;
-    margin-bottom: 32px;
-    font-size: 14px;
-  }
-  .status-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--error);
-    flex-shrink: 0;
-  }
-  .status-dot.online { background: var(--success); animation: pulse 2s ease infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+      /* Privacy banner */
+      .privacy-banner {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(34, 211, 160, 0.06);
+        border: 1px solid rgba(34, 211, 160, 0.2);
+        border-radius: var(--radius);
+        padding: 12px 18px;
+        margin: 20px 0 16px;
+        font-size: 13px;
+        color: #a0f0d8;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .privacy-banner span {
+        font-size: 16px;
+      }
 
-  .steps { display: flex; flex-direction: column; gap: 24px; }
-  .step-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    position: relative;
-    overflow: hidden;
-  }
-  .step-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .step-card.active::before { opacity: 1; }
-  .step-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-  .step-num {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .step-title { font-size: 18px; font-weight: 600; }
-  .step-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .drop-zone {
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 32px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.25s;
-    background: var(--bg);
-    position: relative;
-  }
-  .drop-zone:hover, .drop-zone.drag { border-color: var(--accent2); background: rgba(123,45,255,0.04); }
-  .drop-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .drop-icon { font-size: 36px; margin-bottom: 10px; }
-  .drop-label { font-size: 15px; font-weight: 500; }
-  .drop-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
-  .thumb-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 8px;
-    margin-top: 16px;
-    max-height: 280px;
-    overflow-y: auto;
-  }
-  .thumb {
-    aspect-ratio: 1;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .thumb.processing { border-color: var(--gold); }
-  .thumb.done { border-color: var(--success); }
-  .thumb.error { border-color: var(--error); }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .thumb .badge {
-    position: absolute; bottom: 3px; right: 3px;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px;
-  }
-  .thumb.done .badge { background: var(--success); }
-  .thumb.processing .badge { background: var(--gold); }
-  .thumb.error .badge { background: var(--error); }
-  .face-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-  .face-circle {
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--accent);
-    flex-shrink: 0;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); font-size: 36px;
-  }
-  .face-circle img { width: 100%; height: 100%; object-fit: cover; }
-  .face-drop {
-    flex: 1; min-width: 200px;
-    border: 2px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.25s;
-    background: var(--bg);
-    position: relative;
-  }
-  .face-drop:hover { border-color: var(--accent); background: rgba(255,60,172,0.04); }
-  .face-drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .start-btn {
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    border: none;
-    border-radius: var(--radius);
-    color: #fff;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 24px;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.25s;
-  }
-  .start-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,60,172,0.35); }
-  .start-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .progress-wrap { margin-top: 20px; display: none; }
-  .progress-wrap.show { display: block; }
-  .progress-bar { background: var(--bg); border-radius: 999px; height: 6px; overflow: hidden; margin-bottom: 8px; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 999px; transition: width 0.4s; width: 0%; }
-  .progress-label { font-size: 13px; color: var(--muted); }
+      /* Status bar */
+      .status-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px 18px;
+        margin-bottom: 32px;
+        font-size: 14px;
+      }
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--error);
+        flex-shrink: 0;
+      }
+      .status-dot.online {
+        background: var(--success);
+        animation: pulse 2s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
 
-  /* Results */
-  .results-section { margin-top: 40px; display: none; }
-  .results-section.show { display: block; }
-  .results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-  .results-title { font-family: 'Bebas Neue', cursive; font-size: 28px; letter-spacing: 0.05em; }
-  .dl-all-btn {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .dl-all-btn:hover { background: var(--accent2); border-color: var(--accent2); }
-  .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-  .result-card {
-    background: var(--surface2);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    animation: fadeUp 0.4s ease both;
-  }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-  .result-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-  .result-footer { padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; }
-  .result-name { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px; }
-  .dl-btn { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 16px; }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .step-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .step-card.active::before {
+        opacity: 1;
+      }
+      .step-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+      .step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", cursive;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .step-sub {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .drop-zone {
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+        padding: 32px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        background: var(--bg);
+        position: relative;
+      }
+      .drop-zone:hover,
+      .drop-zone.drag {
+        border-color: var(--accent2);
+        background: rgba(123, 45, 255, 0.04);
+      }
+      .drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .drop-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+      .drop-label {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .drop-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .thumb-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 8px;
+        margin-top: 16px;
+        max-height: 280px;
+        overflow-y: auto;
+      }
+      .thumb {
+        aspect-ratio: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        border: 2px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .thumb.processing {
+        border-color: var(--gold);
+      }
+      .thumb.done {
+        border-color: var(--success);
+      }
+      .thumb.error {
+        border-color: var(--error);
+      }
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .thumb .badge {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+      }
+      .thumb.done .badge {
+        background: var(--success);
+      }
+      .thumb.processing .badge {
+        background: var(--gold);
+      }
+      .thumb.error .badge {
+        background: var(--error);
+      }
+      .face-wrap {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .face-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--accent);
+        flex-shrink: 0;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 36px;
+      }
+      .face-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .face-drop {
+        flex: 1;
+        min-width: 200px;
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        background: var(--bg);
+        position: relative;
+      }
+      .face-drop:hover {
+        border-color: var(--accent);
+        background: rgba(255, 60, 172, 0.04);
+      }
+      .face-drop input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .start-btn {
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        border: none;
+        border-radius: var(--radius);
+        color: #fff;
+        font-family: "Bebas Neue", cursive;
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .start-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(255, 60, 172, 0.35);
+      }
+      .start-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .progress-wrap {
+        margin-top: 20px;
+        display: none;
+      }
+      .progress-wrap.show {
+        display: block;
+      }
+      .progress-bar {
+        background: var(--bg);
+        border-radius: 999px;
+        height: 6px;
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        border-radius: 999px;
+        transition: width 0.4s;
+        width: 0%;
+      }
+      .progress-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
 
-  /* Features section */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    margin-top: 48px;
-  }
-  .feature-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-  }
-  .feature-icon { font-size: 28px; margin-bottom: 10px; }
-  .feature-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-  .feature-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+      /* Results */
+      .results-section {
+        margin-top: 40px;
+        display: none;
+      }
+      .results-section.show {
+        display: block;
+      }
+      .results-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .results-title {
+        font-family: "Bebas Neue", cursive;
+        font-size: 28px;
+        letter-spacing: 0.05em;
+      }
+      .dl-all-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .dl-all-btn:hover {
+        background: var(--accent2);
+        border-color: var(--accent2);
+      }
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .result-card {
+        background: var(--surface2);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        animation: fadeUp 0.4s ease both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .result-card img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        display: block;
+      }
+      .result-footer {
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .result-name {
+        font-size: 11px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+      }
+      .dl-btn {
+        background: none;
+        border: none;
+        color: var(--accent);
+        cursor: pointer;
+        font-size: 16px;
+      }
 
-  /* Toast */
-  .toast {
-    position: fixed; bottom: 28px; right: 28px;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 12px 18px;
-    font-size: 14px; z-index: 999;
-    transform: translateY(80px); opacity: 0;
-    transition: all 0.3s ease; max-width: 300px;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
-  .toast.error { border-color: var(--error); }
-  .toast.success { border-color: var(--success); }
-  .count-badge {
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color: #fff; font-size: 11px; font-weight: 700;
-    padding: 2px 8px; border-radius: 999px; margin-left: 8px;
-  }
+      /* Features section */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .feature-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .feature-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .feature-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
 
-  /* Footer */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 24px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  footer a {
-    color: var(--muted);
-    text-decoration: none;
-    margin: 0 12px;
-    transition: color 0.2s;
-  }
-  footer a:hover { color: var(--accent); }
-  .footer-links { margin-bottom: 10px; }
-  .footer-copy { font-size: 12px; }
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-size: 14px;
+        z-index: 999;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s ease;
+        max-width: 300px;
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .toast.error {
+        border-color: var(--error);
+      }
+      .toast.success {
+        border-color: var(--success);
+      }
+      .count-badge {
+        background: linear-gradient(135deg, var(--accent2), var(--accent));
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-left: 8px;
+      }
 
-  /* Modal */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .modal-overlay.show { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-  }
-  .modal h2 { font-family: 'Bebas Neue', cursive; font-size: 28px; margin-bottom: 16px; letter-spacing: 0.05em; }
-  .modal p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
-  .modal h3 { font-size: 15px; font-weight: 600; margin: 16px 0 8px; color: var(--text); }
-  .modal-close {
-    position: absolute; top: 16px; right: 16px;
-    background: none; border: none;
-    color: var(--muted); font-size: 20px;
-    cursor: pointer; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--text); }
+      /* Footer */
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--border);
+        padding: 24px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+        margin: 0 12px;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--accent);
+      }
+      .footer-links {
+        margin-bottom: 10px;
+      }
+      .footer-copy {
+        font-size: 12px;
+      }
 
-  @media (max-width: 600px) {
-    .features { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>
-</head>
-<body>
+      /* Modal */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 100;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .modal-overlay.show {
+        display: flex;
+      }
+      .modal {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        max-width: 600px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+      }
+      .modal h2 {
+        font-family: "Bebas Neue", cursive;
+        font-size: 28px;
+        margin-bottom: 16px;
+        letter-spacing: 0.05em;
+      }
+      .modal p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .modal h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: var(--text);
+      }
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 20px;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .modal-close:hover {
+        color: var(--text);
+      }
 
-<div class="wrapper">
-  <header>
-    <div class="logo">FaceShift</div>
-    <div class="tagline">Free AI Bulk Face Swap · No Signup · Instant Results</div>
-  </header>
+      @media (max-width: 600px) {
+        .features {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="logo">FaceShift</div>
+        <div class="tagline">
+          Free AI Bulk Face Swap · No Signup · Instant Results
+        </div>
+      </header>
 
-  <!-- Privacy Banner -->
-  <div class="privacy-banner">
-    <span>🔒</span>
-    <span><strong>100% Private & Secure</strong> — Your images are processed instantly and never stored on our servers. Everything is deleted the moment you leave or refresh this page.</span>
-  </div>
+      <!-- Privacy Banner -->
+      <div class="privacy-banner">
+        <span>🔒</span>
+        <span
+          ><strong>100% Private & Secure</strong> — Your images are processed
+          instantly and never stored on our servers. Everything is deleted the
+          moment you leave or refresh this page.</span
+        >
+      </div>
 
-  <!-- Status Bar -->
-  <div class="status-bar">
-    <div class="status-dot" id="statusDot"></div>
-    <span id="statusText">Connecting to AI server...</span>
-  </div>
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Connecting to AI server...</span>
+      </div>
 
-  <div class="steps">
+      <div class="steps">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">
+                Upload Target Images
+                <span id="imgCount" class="count-badge" style="display: none"
+                  >0</span
+                >
+              </div>
+              <div class="step-sub">
+                Upload up to 30 images where the face will be replaced
+              </div>
+            </div>
+          </div>
+          <div class="drop-zone" id="targetDrop">
+            <input type="file" id="targetInput" accept="image/*" multiple />
+            <div class="drop-icon">🖼️</div>
+            <div class="drop-label">
+              Drag & drop images here or click to browse
+            </div>
+            <div class="drop-sub">
+              JPG, PNG, WEBP supported · Max 30 images at once
+            </div>
+          </div>
+          <div class="thumb-grid" id="targetGrid"></div>
+        </div>
 
-    <!-- Step 1 -->
-    <div class="step-card">
-      <div class="step-header">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Upload Target Images <span id="imgCount" class="count-badge" style="display:none">0</span></div>
-          <div class="step-sub">Upload up to 30 images where the face will be replaced</div>
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Upload Face Photo</div>
+              <div class="step-sub">
+                This face will be swapped into all target images — use a clear,
+                front-facing photo
+              </div>
+            </div>
+          </div>
+          <div class="face-wrap">
+            <div class="face-circle" id="faceCircle">👤</div>
+            <div class="face-drop">
+              <input type="file" id="faceInput" accept="image/*" />
+              <div class="drop-icon">📸</div>
+              <div class="drop-label">Drag & drop your face photo</div>
+              <div class="drop-sub">
+                Best results with a clear, well-lit, front-facing photo
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Start Face Swap</div>
+              <div class="step-sub">
+                AI processes all images one by one — results appear as each one
+                completes
+              </div>
+            </div>
+          </div>
+          <button
+            class="start-btn"
+            id="startBtn"
+            onclick="startSwap()"
+            disabled
+          >
+            ⚡ START FACE SWAP NOW
+          </button>
+          <div class="progress-wrap" id="progressWrap">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">Starting...</div>
+          </div>
         </div>
       </div>
-      <div class="drop-zone" id="targetDrop">
-        <input type="file" id="targetInput" accept="image/*" multiple />
-        <div class="drop-icon">🖼️</div>
-        <div class="drop-label">Drag & drop images here or click to browse</div>
-        <div class="drop-sub">JPG, PNG, WEBP supported · Max 30 images at once</div>
-      </div>
-      <div class="thumb-grid" id="targetGrid"></div>
-    </div>
 
-    <!-- Step 2 -->
-    <div class="step-card">
-      <div class="step-header">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Upload Face Photo</div>
-          <div class="step-sub">This face will be swapped into all target images — use a clear, front-facing photo</div>
+      <!-- Results -->
+      <div class="results-section" id="resultsSection">
+        <div class="results-header">
+          <div class="results-title">✅ Swapped Results</div>
+          <button class="dl-all-btn" onclick="downloadAll()">
+            ⬇ Download All
+          </button>
+        </div>
+        <div class="results-grid" id="resultsGrid"></div>
+        <p
+          style="
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 16px;
+            text-align: center;
+          "
+        >
+          ⚠️ Download your results now — they will be gone when you refresh or
+          close this page.
+        </p>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Bulk Swap — 30 Images</div>
+          <div class="feature-desc">
+            Upload up to 30 target images and swap all faces in one click
+            automatically.
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-title">100% Private</div>
+          <div class="feature-desc">
+            Your images are never stored. Everything is deleted instantly after
+            processing.
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🆓</div>
+          <div class="feature-title">Completely Free</div>
+          <div class="feature-desc">
+            No signup, no credit card, no watermark. Just upload and swap for
+            free.
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-title">AI Powered</div>
+          <div class="feature-desc">
+            Advanced InsightFace AI model delivers realistic, natural-looking
+            results.
+          </div>
         </div>
       </div>
-      <div class="face-wrap">
-        <div class="face-circle" id="faceCircle">👤</div>
-        <div class="face-drop">
-          <input type="file" id="faceInput" accept="image/*" />
-          <div class="drop-icon">📸</div>
-          <div class="drop-label">Drag & drop your face photo</div>
-          <div class="drop-sub">Best results with a clear, well-lit, front-facing photo</div>
-        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-links">
+        <a href="#" onclick="openModal('terms')">Terms of Use</a>
+        <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
+        <a href="#" onclick="openModal('disclaimer')">Disclaimer</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 FaceShift · Free AI Face Swap Tool · By using this tool you agree
+        to our Terms of Use.
+      </div>
+    </footer>
+
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="modal-terms">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal('terms')">✕</button>
+        <h2>Terms of Use</h2>
+        <p>By using FaceShift, you agree to the following terms:</p>
+        <h3>Acceptable Use</h3>
+        <p>
+          You may only use FaceShift to swap faces in images for which you have
+          the legal right or permission to use. You must not use this tool to
+          create misleading, harmful, or non-consensual content.
+        </p>
+        <h3>Your Responsibility</h3>
+        <p>
+          You are solely responsible for the images you upload and the results
+          you create. FaceShift is a tool only — we are not responsible for how
+          users use the output.
+        </p>
+        <h3>Prohibited Use</h3>
+        <p>
+          You may not use FaceShift to create content that is defamatory,
+          harassing, illegal, or that violates the privacy or rights of any
+          individual.
+        </p>
+        <h3>No Warranty</h3>
+        <p>
+          FaceShift is provided as-is without any warranty. We do not guarantee
+          the accuracy or quality of results.
+        </p>
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div class="step-card">
-      <div class="step-header">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Start Face Swap</div>
-          <div class="step-sub">AI processes all images one by one — results appear as each one completes</div>
-        </div>
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="modal-privacy">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal('privacy')">✕</button>
+        <h2>Privacy Policy</h2>
+        <h3>Images & Data</h3>
+        <p>
+          FaceShift does not store, save, or share any images you upload. All
+          image processing happens in real-time and images are immediately
+          discarded after your result is returned.
+        </p>
+        <h3>No Accounts</h3>
+        <p>
+          We do not require you to create an account. We do not collect your
+          name, email, or any personal information.
+        </p>
+        <h3>Cookies</h3>
+        <p>
+          We may use basic analytics cookies to understand how many people visit
+          the site. No personal data is collected through these cookies.
+        </p>
+        <h3>Third Parties</h3>
+        <p>
+          We do not sell or share any data with third parties. Your images never
+          leave our processing server and are never stored.
+        </p>
       </div>
-      <button class="start-btn" id="startBtn" onclick="startSwap()" disabled>⚡ START FACE SWAP NOW</button>
-      <div class="progress-wrap" id="progressWrap">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-label" id="progressLabel">Starting...</div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div class="modal-overlay" id="modal-disclaimer">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal('disclaimer')">
+          ✕
+        </button>
+        <h2>Disclaimer</h2>
+        <p>
+          FaceShift is an AI-powered face swap tool intended for creative,
+          entertainment, and educational purposes only.
+        </p>
+        <p>By using this tool, you confirm that:</p>
+        <p>• You have the right and permission to use all images you upload.</p>
+        <p>
+          • You will not use the output to mislead, harm, or defame any
+          individual.
+        </p>
+        <p>
+          • You understand that creating non-consensual intimate imagery is
+          illegal in many countries.
+        </p>
+        <p>
+          • FaceShift does not promote or endorse the creation of deepfakes or
+          misleading content.
+        </p>
+        <p>
+          FaceShift is not responsible for misuse of this tool. Users are solely
+          responsible for their actions and the content they create.
+        </p>
       </div>
     </div>
 
-  </div>
+    <div class="toast" id="toast"></div>
 
-  <!-- Results -->
-  <div class="results-section" id="resultsSection">
-    <div class="results-header">
-      <div class="results-title">✅ Swapped Results</div>
-      <button class="dl-all-btn" onclick="downloadAll()">⬇ Download All</button>
-    </div>
-    <div class="results-grid" id="resultsGrid"></div>
-    <p style="font-size:12px;color:var(--muted);margin-top:16px;text-align:center;">⚠️ Download your results now — they will be gone when you refresh or close this page.</p>
-  </div>
+    <script>
+      let targetFiles = [];
+      let faceDataURL = null;
+      let results = [];
+      let isProcessing = false;
 
-  <!-- Features -->
-  <div class="features">
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <div class="feature-title">Bulk Swap — 30 Images</div>
-      <div class="feature-desc">Upload up to 30 target images and swap all faces in one click automatically.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔒</div>
-      <div class="feature-title">100% Private</div>
-      <div class="feature-desc">Your images are never stored. Everything is deleted instantly after processing.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🆓</div>
-      <div class="feature-title">Completely Free</div>
-      <div class="feature-desc">No signup, no credit card, no watermark. Just upload and swap for free.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <div class="feature-title">AI Powered</div>
-      <div class="feature-desc">Advanced InsightFace AI model delivers realistic, natural-looking results.</div>
-    </div>
-  </div>
+      const BACKEND = "https://yash4940-faceshift-backend.hf.space";
 
-</div>
+      async function checkServer() {
+        try {
+          const res = await fetch(`${BACKEND}/health`);
+          const data = await res.json();
+          if (data.status === "ok") {
+            document.getElementById("statusDot").classList.add("online");
+            document.getElementById("statusText").textContent =
+              "✅ AI Server is online — ready to swap faces!";
+            updateStartBtn();
+          }
+        } catch {
+          document.getElementById("statusText").textContent =
+            "⏳ AI server is warming up — please wait a moment...";
+          setTimeout(checkServer, 4000);
+        }
+      }
+      checkServer();
 
-<!-- Footer -->
-<footer>
-  <div class="footer-links">
-    <a href="#" onclick="openModal('terms')">Terms of Use</a>
-    <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
-    <a href="#" onclick="openModal('disclaimer')">Disclaimer</a>
-  </div>
-  <div class="footer-copy">© 2026 FaceShift · Free AI Face Swap Tool · By using this tool you agree to our Terms of Use.</div>
-</footer>
+      document.getElementById("targetInput").addEventListener("change", (e) => {
+        handleTargetFiles(Array.from(e.target.files));
+      });
 
-<!-- Terms Modal -->
-<div class="modal-overlay" id="modal-terms">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('terms')">✕</button>
-    <h2>Terms of Use</h2>
-    <p>By using FaceShift, you agree to the following terms:</p>
-    <h3>Acceptable Use</h3>
-    <p>You may only use FaceShift to swap faces in images for which you have the legal right or permission to use. You must not use this tool to create misleading, harmful, or non-consensual content.</p>
-    <h3>Your Responsibility</h3>
-    <p>You are solely responsible for the images you upload and the results you create. FaceShift is a tool only — we are not responsible for how users use the output.</p>
-    <h3>Prohibited Use</h3>
-    <p>You may not use FaceShift to create content that is defamatory, harassing, illegal, or that violates the privacy or rights of any individual.</p>
-    <h3>No Warranty</h3>
-    <p>FaceShift is provided as-is without any warranty. We do not guarantee the accuracy or quality of results.</p>
-  </div>
-</div>
+      const targetDrop = document.getElementById("targetDrop");
+      targetDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        targetDrop.classList.add("drag");
+      });
+      targetDrop.addEventListener("dragleave", () =>
+        targetDrop.classList.remove("drag"),
+      );
+      targetDrop.addEventListener("drop", (e) => {
+        e.preventDefault();
+        targetDrop.classList.remove("drag");
+        handleTargetFiles(
+          Array.from(e.dataTransfer.files).filter((f) =>
+            f.type.startsWith("image/"),
+          ),
+        );
+      });
 
-<!-- Privacy Modal -->
-<div class="modal-overlay" id="modal-privacy">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('privacy')">✕</button>
-    <h2>Privacy Policy</h2>
-    <h3>Images & Data</h3>
-    <p>FaceShift does not store, save, or share any images you upload. All image processing happens in real-time and images are immediately discarded after your result is returned.</p>
-    <h3>No Accounts</h3>
-    <p>We do not require you to create an account. We do not collect your name, email, or any personal information.</p>
-    <h3>Cookies</h3>
-    <p>We may use basic analytics cookies to understand how many people visit the site. No personal data is collected through these cookies.</p>
-    <h3>Third Parties</h3>
-    <p>We do not sell or share any data with third parties. Your images never leave our processing server and are never stored.</p>
-  </div>
-</div>
-
-<!-- Disclaimer Modal -->
-<div class="modal-overlay" id="modal-disclaimer">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('disclaimer')">✕</button>
-    <h2>Disclaimer</h2>
-    <p>FaceShift is an AI-powered face swap tool intended for creative, entertainment, and educational purposes only.</p>
-    <p>By using this tool, you confirm that:</p>
-    <p>• You have the right and permission to use all images you upload.</p>
-    <p>• You will not use the output to mislead, harm, or defame any individual.</p>
-    <p>• You understand that creating non-consensual intimate imagery is illegal in many countries.</p>
-    <p>• FaceShift does not promote or endorse the creation of deepfakes or misleading content.</p>
-    <p>FaceShift is not responsible for misuse of this tool. Users are solely responsible for their actions and the content they create.</p>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-  let targetFiles = [];
-  let faceDataURL = null;
-  let results = [];
-  let isProcessing = false;
-
-  const BACKEND = 'https://yash4940-faceshift-backend.hf.space';
-
-  async function checkServer() {
-    try {
-      const res = await fetch(`${BACKEND}/health`);
-      const data = await res.json();
-      if (data.status === 'ok') {
-        document.getElementById('statusDot').classList.add('online');
-        document.getElementById('statusText').textContent = '✅ AI Server is online — ready to swap faces!';
+      function handleTargetFiles(files) {
+        targetFiles = [...targetFiles, ...files].slice(0, 30);
+        renderGrid();
         updateStartBtn();
       }
-    } catch {
-      document.getElementById('statusText').textContent = '⏳ AI server is warming up — please wait a moment...';
-      setTimeout(checkServer, 4000);
-    }
-  }
-  checkServer();
 
-  document.getElementById('targetInput').addEventListener('change', e => {
-    handleTargetFiles(Array.from(e.target.files));
-  });
-
-  const targetDrop = document.getElementById('targetDrop');
-  targetDrop.addEventListener('dragover', e => { e.preventDefault(); targetDrop.classList.add('drag'); });
-  targetDrop.addEventListener('dragleave', () => targetDrop.classList.remove('drag'));
-  targetDrop.addEventListener('drop', e => {
-    e.preventDefault(); targetDrop.classList.remove('drag');
-    handleTargetFiles(Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/')));
-  });
-
-  function handleTargetFiles(files) {
-    targetFiles = [...targetFiles, ...files].slice(0, 30);
-    renderGrid();
-    updateStartBtn();
-  }
-
-  function renderGrid() {
-    const grid = document.getElementById('targetGrid');
-    grid.innerHTML = '';
-    const badge = document.getElementById('imgCount');
-    badge.style.display = targetFiles.length ? 'inline-block' : 'none';
-    badge.textContent = targetFiles.length;
-    targetFiles.forEach((f, i) => {
-      const div = document.createElement('div');
-      div.className = 'thumb';
-      div.id = `thumb-${i}`;
-      const img = document.createElement('img');
-      img.src = URL.createObjectURL(f);
-      const b = document.createElement('div');
-      b.className = 'badge';
-      div.appendChild(img); div.appendChild(b);
-      grid.appendChild(div);
-    });
-  }
-
-  document.getElementById('faceInput').addEventListener('change', e => {
-    if (e.target.files[0]) handleFaceFile(e.target.files[0]);
-  });
-
-  function handleFaceFile(file) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      faceDataURL = e.target.result;
-      document.getElementById('faceCircle').innerHTML = `<img src="${faceDataURL}" />`;
-      updateStartBtn();
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function updateStartBtn() {
-    const online = document.getElementById('statusDot').classList.contains('online');
-    document.getElementById('startBtn').disabled = !(targetFiles.length > 0 && faceDataURL && online) || isProcessing;
-  }
-
-  async function startSwap() {
-    if (isProcessing) return;
-    isProcessing = true;
-    results = [];
-    document.getElementById('startBtn').disabled = true;
-    document.getElementById('startBtn').textContent = '⏳ SWAPPING FACES...';
-    document.getElementById('progressWrap').classList.add('show');
-    document.getElementById('resultsSection').classList.remove('show');
-    document.getElementById('resultsGrid').innerHTML = '';
-
-    const total = targetFiles.length;
-    let done = 0;
-
-    for (let i = 0; i < targetFiles.length; i++) {
-      const thumb = document.getElementById(`thumb-${i}`);
-      if (thumb) { thumb.className = 'thumb processing'; thumb.querySelector('.badge').textContent = '⏳'; }
-      updateProgress(i, total, `Processing image ${i+1} of ${total}...`);
-
-      try {
-        const targetDataURL = await fileToDataURL(targetFiles[i]);
-        const res = await fetch(`${BACKEND}/swap`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ target: targetDataURL, face: faceDataURL })
+      function renderGrid() {
+        const grid = document.getElementById("targetGrid");
+        grid.innerHTML = "";
+        const badge = document.getElementById("imgCount");
+        badge.style.display = targetFiles.length ? "inline-block" : "none";
+        badge.textContent = targetFiles.length;
+        targetFiles.forEach((f, i) => {
+          const div = document.createElement("div");
+          div.className = "thumb";
+          div.id = `thumb-${i}`;
+          const img = document.createElement("img");
+          img.src = URL.createObjectURL(f);
+          const b = document.createElement("div");
+          b.className = "badge";
+          div.appendChild(img);
+          div.appendChild(b);
+          grid.appendChild(div);
         });
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-
-        results.push({ name: targetFiles[i].name, url: data.result });
-        if (thumb) { thumb.className = 'thumb done'; thumb.querySelector('.badge').textContent = '✓'; thumb.querySelector('img').src = data.result; }
-        addResultCard({ name: targetFiles[i].name, url: data.result });
-        document.getElementById('resultsSection').classList.add('show');
-        done++;
-      } catch (err) {
-        if (thumb) { thumb.className = 'thumb error'; thumb.querySelector('.badge').textContent = '✗'; }
-        showToast(`Image ${i+1} failed: ${err.message}`, 'error');
       }
-    }
 
-    updateProgress(total, total, `✅ Done! ${done} of ${total} images swapped successfully.`);
-    isProcessing = false;
-    document.getElementById('startBtn').disabled = false;
-    document.getElementById('startBtn').textContent = '⚡ SWAP AGAIN';
-    showToast(`${done} of ${total} images swapped!`, 'success');
-  }
+      document.getElementById("faceInput").addEventListener("change", (e) => {
+        if (e.target.files[0]) handleFaceFile(e.target.files[0]);
+      });
 
-  function updateProgress(done, total, label) {
-    document.getElementById('progressFill').style.width = `${(done/total)*100}%`;
-    document.getElementById('progressLabel').textContent = label;
-  }
+      function handleFaceFile(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          faceDataURL = e.target.result;
+          document.getElementById("faceCircle").innerHTML =
+            `<img src="${faceDataURL}" />`;
+          updateStartBtn();
+        };
+        reader.readAsDataURL(file);
+      }
 
-  function fileToDataURL(file) {
-    return new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = e => res(e.target.result);
-      r.onerror = () => rej(new Error('Read failed'));
-      r.readAsDataURL(file);
-    });
-  }
+      function updateStartBtn() {
+        const online = document
+          .getElementById("statusDot")
+          .classList.contains("online");
+        document.getElementById("startBtn").disabled =
+          !(targetFiles.length > 0 && faceDataURL && online) || isProcessing;
+      }
 
-  function addResultCard({ name, url }) {
-    const grid = document.getElementById('resultsGrid');
-    const card = document.createElement('div');
-    card.className = 'result-card';
-    card.innerHTML = `
+      async function startSwap() {
+        if (isProcessing) return;
+        isProcessing = true;
+        results = [];
+        document.getElementById("startBtn").disabled = true;
+        document.getElementById("startBtn").textContent =
+          "⏳ SWAPPING FACES...";
+        document.getElementById("progressWrap").classList.add("show");
+        document.getElementById("resultsSection").classList.remove("show");
+        document.getElementById("resultsGrid").innerHTML = "";
+
+        const total = targetFiles.length;
+        let done = 0;
+
+        for (let i = 0; i < targetFiles.length; i++) {
+          const thumb = document.getElementById(`thumb-${i}`);
+          if (thumb) {
+            thumb.className = "thumb processing";
+            thumb.querySelector(".badge").textContent = "⏳";
+          }
+          updateProgress(i, total, `Processing image ${i + 1} of ${total}...`);
+
+          try {
+            const targetDataURL = await fileToDataURL(targetFiles[i]);
+            const res = await fetch(`${BACKEND}/swap`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                target: targetDataURL,
+                face: faceDataURL,
+              }),
+            });
+            const data = await res.json();
+            if (data.error) throw new Error(data.error);
+
+            results.push({ name: targetFiles[i].name, url: data.result });
+            if (thumb) {
+              thumb.className = "thumb done";
+              thumb.querySelector(".badge").textContent = "✓";
+              thumb.querySelector("img").src = data.result;
+            }
+            addResultCard({ name: targetFiles[i].name, url: data.result });
+            document.getElementById("resultsSection").classList.add("show");
+            done++;
+          } catch (err) {
+            if (thumb) {
+              thumb.className = "thumb error";
+              thumb.querySelector(".badge").textContent = "✗";
+            }
+            showToast(`Image ${i + 1} failed: ${err.message}`, "error");
+          }
+        }
+
+        updateProgress(
+          total,
+          total,
+          `✅ Done! ${done} of ${total} images swapped successfully.`,
+        );
+        isProcessing = false;
+        document.getElementById("startBtn").disabled = false;
+        document.getElementById("startBtn").textContent = "⚡ SWAP AGAIN";
+        showToast(`${done} of ${total} images swapped!`, "success");
+      }
+
+      function updateProgress(done, total, label) {
+        document.getElementById("progressFill").style.width =
+          `${(done / total) * 100}%`;
+        document.getElementById("progressLabel").textContent = label;
+      }
+
+      function fileToDataURL(file) {
+        return new Promise((res, rej) => {
+          const r = new FileReader();
+          r.onload = (e) => res(e.target.result);
+          r.onerror = () => rej(new Error("Read failed"));
+          r.readAsDataURL(file);
+        });
+      }
+
+      function addResultCard({ name, url }) {
+        const grid = document.getElementById("resultsGrid");
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
       <img src="${url}" alt="Face swapped result" />
       <div class="result-footer">
         <span class="result-name">${name}</span>
         <button class="dl-btn" onclick="downloadImage('${url}','${name}')" title="Download">⬇</button>
       </div>`;
-    grid.appendChild(card);
-  }
+        grid.appendChild(card);
+      }
 
-  async function downloadImage(url, name) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `faceshift_${name}`;
-    a.click();
-  }
+      async function downloadImage(url, name) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `faceshift_${name}`;
+        a.click();
+      }
 
-  async function downloadAll() {
-    for (const r of results) {
-      await downloadImage(r.url, r.name);
-      await new Promise(res => setTimeout(res, 300));
-    }
-  }
+      async function downloadAll() {
+        for (const r of results) {
+          await downloadImage(r.url, r.name);
+          await new Promise((res) => setTimeout(res, 300));
+        }
+      }
 
-  function openModal(name) {
-    document.getElementById(`modal-${name}`).classList.add('show');
-  }
+      function openModal(name) {
+        document.getElementById(`modal-${name}`).classList.add("show");
+      }
 
-  function closeModal(name) {
-    document.getElementById(`modal-${name}`).classList.remove('show');
-  }
+      function closeModal(name) {
+        document.getElementById(`modal-${name}`).classList.remove("show");
+      }
 
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.classList.remove('show');
-    });
-  });
+      document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.classList.remove("show");
+        });
+      });
 
-  let toastTimer;
-  function showToast(msg, type = '') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast show ${type}`;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
-  }
-</script>
-</body>
+      let toastTimer;
+      function showToast(msg, type = "") {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.className = `toast show ${type}`;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 4000);
+      }
+    </script>
+  </body>
 </html>
